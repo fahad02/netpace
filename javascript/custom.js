@@ -659,8 +659,93 @@ function submitform()
 	 function trimIt(elemntV){
 		return elemntV.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 	 }
+
+
+ // Start Cookies
+function setCookie(cname, cvalue, exdays) {
+	const cdate = new Date();
+	cdate.setTime(cdate.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	let expires = "expires=" + cdate.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+   }
+  
+   function getCookie(cname) {
+	 let name = cname + "=";
+	 let decodedCookie = decodeURIComponent(document.cookie);
+	 let cookieArray = decodedCookie.split(';');
+	 for(let i=0;i<cookieArray.length;i++) {
+	   let cookieObj = cookieArray[i];
+	   while(cookieObj.charAt(0) == ' ') {
+		 cookieObj = cookieObj.substring(1);
+	   }
+	   if (cookieObj.indexOf(name) == 0) {
+		 return cookieObj.substring(name.length, cookieObj.length)
+	   }
+  
+	 }
+	 return "";
+   }
+  
+   $(document).ready(function () {
+	try{
+	  if(getCookieConsentStatus()==null ) {
+		var cookieDiv = document.getElementById("cookie-div");
+		cookieDiv.style.display = 'block';
+	  }
+  
+	}
+	catch(e) {
+	  var cookieDiv = document.getElementById("cookie-div");
+		cookieDiv.style.display = 'block';
+   }}
+	)
+   function getCookieConsentStatus(){
+	return localStorage.getItem('cookies_enabled');
+   }
+  
+  //  function checkCookie() {
+  //    if(getCookieConsentStatus()==1){
+  //         let username = getCookie("username");
+  //       if (username != "") {
+  //       alert("Welcome again " + username);
+  //       } else {
+  //         username = prompt("Please enter your name:", "");
+  //         if (username != "" && username != null) {
+  //           setCookie("username", username, 365);
+  //         }
+  //       }
+  //    }
+  
+  // }
+  
+	function enableCookies() {
+	  localStorage.setItem('cookies_enabled',1);
+  
+	  var cookieDiv = document.getElementById("cookie-div");
+	  cookieDiv.style.display = 'none';
+	}
+  
+	function disableCookies() {
+	  localStorage.setItem('cookies_enabled',0);
+  
+	  var cookieDiv = document.getElementById("cookie-div");
+	  cookieDiv.style.display = 'none';
+	}
+	 
+  // END Cookie
+  $(document).ready(function () {
+	var n = localStorage.getItem('on_load_counter');
+	if (n === null) {
+	 n = 0;
+	}
+	n = 0;
+	// n++;
+  
+	localStorage.setItem("on_load_counter", n); 
+});
 	 
 	 function resetform(){
+		try{
 		document.getElementById('errorMsgemail').style.display = 'none';
 		document.getElementById('errorMsgcomment').style.display = 'none';
 		document.getElementById('ajax-loader').style.display = 'none';
@@ -670,6 +755,10 @@ function submitform()
 		document.getElementById('pnumber').value = '';
 		document.getElementById('successMsg').style.display = 'none';
 		document.getElementById('errorMsg').style.display = 'none';
+		}
+		catch(error){
+			console.log(error);
+		}
 		
 		return false;
 	 }
@@ -678,5 +767,10 @@ function submitform()
 	 /*************************************************************************/
 
 
+	 (function ($) {
+		$(window).on("load", function () {
+		 $(".content").mCustomScrollbar();
+		});
+	   })(jQuery);
 
 	 

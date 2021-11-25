@@ -3381,7 +3381,7 @@ footer .header-menu ul li {
     box-sizing: border-box;
     position: fixed;
     bottom: 0px;
-    left: 0px;
+    right: 0px;
     z-index: 99;
 }
 .cookies-wrap p {
@@ -3420,8 +3420,8 @@ font-size: 16px;
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 991; /* Sit on top */
+    position: absolute; /* Stay in place */
+    z-index: 99999; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
