@@ -700,7 +700,7 @@ function setCookie(cname, cvalue, exdays) {
    }}
 	)
    function getCookieConsentStatus(){
-	return localStorage.getItem('cookies_enabled');
+	return localStorage.getItem('cookies_enabled_netpace');
    }
   
   //  function checkCookie() {
@@ -719,14 +719,14 @@ function setCookie(cname, cvalue, exdays) {
   // }
   
 	function enableCookies() {
-	  localStorage.setItem('cookies_enabled',1);
+	  localStorage.setItem('cookies_enabled_netpace',1);
   
 	  var cookieDiv = document.getElementById("cookie-div");
 	  cookieDiv.style.display = 'none';
 	}
   
 	function disableCookies() {
-	  localStorage.setItem('cookies_enabled',0);
+	  localStorage.setItem('cookies_enabled_netpace',0);
   
 	  var cookieDiv = document.getElementById("cookie-div");
 	  cookieDiv.style.display = 'none';
